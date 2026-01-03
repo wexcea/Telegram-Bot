@@ -42,12 +42,13 @@
 2. เลือก Web Service
 
 
-3. เลือก Repository:
-
-wexcea / Telegram-Bot
+3. เลือก Public Repository:
 
 
-4. กด Connect
+
+4. ใส่ลิ้ง https://github.com/wexcea/Telegram-Bot/tree/main
+
+5.กด Connect
 
 
 
