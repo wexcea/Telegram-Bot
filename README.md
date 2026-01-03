@@ -22,7 +22,7 @@
 
 3. เลือก Sign up with Google
 
-> แนะนำ: ใช้ Gmail ปกติ สมัครง่าย ไม่ต้องตั้งค่าอะไรเพิ่ม
+> แนะนำ: ใช้ Startedกติ สมัครง่าย ไม่ต้องตั้งค่าอะไรเพิ่ม
 
 
 
@@ -301,4 +301,4 @@ OTP ไม่มา
 
 ผู้พัฒนา
 
-GitHub: https://github.com/w#
+GitHub: https://github.com/wexcea
