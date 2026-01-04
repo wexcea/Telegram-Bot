@@ -7,8 +7,20 @@ const bodyParser = require("body-parser");
 const Jimp = require("jimp");
 const jsQR = require("jsqr");
 const fs = require("fs");
-const input = require("input");
 require("dotenv").config();
+
+// ========================================
+// 🆕 ใช้ @fortune-inc/tw-voucher แทน Proxy
+// ========================================
+let twvoucher;
+const twPackage = require('@fortune-inc/tw-voucher');
+if (typeof twPackage === 'function') {
+    twvoucher = twPackage;
+} else if (twPackage.voucher && typeof twPackage.voucher === 'function') {
+    twvoucher = twPackage.voucher;
+} else {
+    twvoucher = twPackage.default || twPackage;
+}
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -278,6 +290,9 @@ function extractVoucher(text) {
 
 const recentSeen = new Set();
 
+// ========================================
+// ⚡ ฟังก์ชันหลัก: ใช้ tw-voucher แทน Proxy
+// ========================================
 async function processVoucher(voucher) {
   if (recentSeen.has(voucher)) return;
   recentSeen.add(voucher);
@@ -286,32 +301,22 @@ async function processVoucher(voucher) {
   console.log(`📥 ${voucher}`);
   
   const phone = CONFIG.walletNumber.replace(/\s/g, '');
-  const PROXY_URL = 'https://truewalletproxy-755211536068837409.rcf2.deploys.app/api';
+  const voucherUrl = `https://gift.truemoney.com/campaign/?v=${voucher}`;
   
   try {
-    const res = await axios.post(PROXY_URL, {
-      mobile: phone,
-      voucher: voucher
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'multilabxxxxxxxx'
-      },
-      timeout: 10000,
-      validateStatus: () => true
-    });
+    // ========================================
+    // 🔥 เรียก tw-voucher โดยตรง (ไม่ผ่าน Proxy)
+    // ========================================
+    const result = await twvoucher(phone, voucherUrl);
     
-    const data = res.data || {};
-    const statusCode = data?.status?.code;
-    
-    if (statusCode === 'SUCCESS') {
-      const amount = Number(data.data.my_ticket.amount_baht.replace(/,/g, ""));
+    if (result && result.amount) {
+      const amount = parseFloat(result.amount);
       totalClaimed++;
       totalAmount += amount;
       console.log(`✅ +${amount}฿`);
     } else {
       totalFailed++;
-      console.log(`❌ ${data?.status?.message || 'Failed'}`);
+      console.log(`❌ ${result?.message || 'Failed'}`);
     }
   } catch (err) {
     totalFailed++;
@@ -436,4 +441,4 @@ if (fs.existsSync('.env')) {
     };
     startBot();
   }
-}
+  }
