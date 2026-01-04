@@ -1,7 +1,7 @@
 {
   "name": "truemoney-auto-claim",
-  "version": "5.0.0",
-  "description": "Auto claim TrueMoney with Proxy",
+  "version": "6.0.0",
+  "description": "Auto claim TrueMoney with tw-voucher (No Proxy)",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -18,7 +18,8 @@
     "jsqr": "^1.4.0",
     "input": "^1.0.1",
     "dotenv": "^16.3.1",
-    "body-parser": "^1.20.2"
+    "body-parser": "^1.20.2",
+    "@fortune-inc/tw-voucher": "^1.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
