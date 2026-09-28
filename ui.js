@@ -54,13 +54,15 @@ const setupPage = ({ error }) => page("ตั้งค่าบอท", head("�
 </div>`);
 
 // ── หน้า dashboard ─────────────────────────────────────────────
-const dashPage = ({ phone, walletName, claimed, failed, total, uptime, mode }) => page("Dashboard", head("TrueMoney Bot", "บอทกำลังทำงาน") + `
+const dashPage = ({ phone, walletName, claimed, failed, total, uptime, mode, limited, vouchers }) => page("Dashboard", head("TrueMoney Bot", "บอทกำลังทำงาน") + `
 <div class="card">
   <div class="stats">
+    <div><span>ซองที่เจอ</span><b>${vouchers || 0}</b></div>
     <div><span>รับสำเร็จ</span><b>${claimed}</b></div>
-    <div><span>ล้มเหลว</span><b>${failed}</b></div>
     <div><span>ยอดรวม</span><b>${Number(total).toFixed(2)}฿</b></div>
   </div>
+  <div class="kv"><span>ล้มเหลว (ซองหมด/ชนะคนอื่น)</span><b>${failed}</b></div>
+  ${limited ? `<div class="kv"><span>ถูกจำกัด/บล็อค</span><b>${limited}</b></div>` : ""}
   <div class="kv"><span>โหมด</span><b>${esc(mode)}</b></div>
   <div class="kv"><span>เบอร์ Telegram</span><b>${esc(phone)}</b></div>
   <div class="kv"><span>กระเป๋า</span><b>${esc(walletName)}</b></div>

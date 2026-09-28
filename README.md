@@ -302,27 +302,3 @@ OTP ไม่มา
 ผู้พัฒนา
 
 GitHub: https://github.com/wexcea
-
----
-
-## 🔐 ตั้งค่า Access Key (สำคัญ)
-
-เว็บนี้เปิดสาธารณะ ใครก็เข้าถึง URL ได้ จึงต้องตั้ง `ACCESS_KEY` ก่อน
-
-1. ใน Render กด Environment → Add แล้วเพิม:
-   - Key: `ACCESS_KEY`  ค่า: เลือกเอง (เช่น `wexcea-2026`)
-2. Redeploy ใหม่
-3. เปิดลิงก์แบบ `https://<your-app>.onrender.com/?k=<ค่าที่ตั้ง>`
-
-ถ้าไม่ตั้ง ACCESS_KEY ระบบจะเปิดให้ทุกคนเข้าได้ (ไม่แนะนำ) การกดลิงก์ `?k=` ผิดจะไม่เห็นหน้าตั้งค่า
-
----
-
-## 🐛 การแก้ปัญหาที่พบ
-
-**เว็บ TrueMoney บล็อคบอท (Cloudflare 403)**
-`@fortune-inc/tw-voucher` ใช้ `fetch` ของ Node ซึ่ง Cloudflare มองว่าเป็น TLS fingerprint ไม่ใช่เบราว์เซอร์
-เลยโดนหน้า 403 ก่อนทุกครั้ง บอทรุ่นนี้เลิกใช้ไปแล้วและยิงตรงด้วย `axios` + `TLSv1.3 Agent` ซึ่งทำงานได้จริง
-
-**อัปเดตฟรี ๆ**
-กด Deploy ล่าสุดใน Render (Manual Deploy) หรืรอ push ใหม่เข้า main แล้ว Render จะ build ให้เอง
