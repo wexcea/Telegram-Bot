@@ -322,7 +322,7 @@ GitHub: https://github.com/wexcea
 
 **เว็บ TrueMoney บล็อคบอท (Cloudflare 403)**
 `@fortune-inc/tw-voucher` ใช้ `fetch` ของ Node ซึ่ง Cloudflare มองว่าเป็น TLS fingerprint ไม่ใช่เบราว์เซอร์
-เลยโดนหน้า 403 ��ก่อนทุกครั้ง บอทรุ่นนี้เลิกใช้ไปแล้วและยิงตรงด้วย `axios` + `TLSv1.3 Agent` ซึ่งทำงานได้จริง
+เลยโดนหน้า 403 ก่อนทุกครั้ง บอทรุ่นนี้เลิกใช้ไปแล้วและยิงตรงด้วย `axios` + `TLSv1.3 Agent` ซึ่งทำงานได้จริง
 
 **อัปเดตฟรี ๆ**
-กด Deploy ล่าสุดใน Render (Manual Deploy) หรื���รอ push ใหม่เข้า main แล้ว Render จะ build ให้เอง
+กด Deploy ล่าสุดใน Render (Manual Deploy) หรืรอ push ใหม่เข้า main แล้ว Render จะ build ให้เอง
